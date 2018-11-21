@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: onboard-k8s-demo
+  name: onboard-k8s-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: onboard-k8s-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: onboard-k8s-demo
+    spec:
+      containers:
+      - image: gcr.io/fausto-lab/onboard-k8s-demo:v1
+        name: onboard-k8s-demo
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      terminationGracePeriodSeconds: 30
