@@ -22,7 +22,7 @@ spec:
         run: onboard-k8s-demo
     spec:
       containers:
-      - image: gcr.io/fausto-lab/onboard-k8s-demo
+      - image: eu.gcr.io/fausto-lab/onboard-k8s-demo
         name: onboard-k8s-demo
         ports:
         - containerPort: 8080
