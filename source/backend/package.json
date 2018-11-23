@@ -1,0 +1,27 @@
+{
+  "name": "micro-backend",
+  "version": "1.0.0",
+  "description": "This is a simple HTTP server for a GKE demo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/favsto/Spinnaker-on-GCP-demo.git"
+  },
+  "keywords": [
+    "spinnaker",
+    "CI",
+    "CD",
+    "NodeJS",
+    "GKE",
+    "Kubernetes"
+  ],
+  "author": "fausto.fusaro@injenia.it",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/favsto/Spinnaker-on-GCP-demo/issues"
+  },
+  "homepage": "https://github.com/favsto/Spinnaker-on-GCP-demo#readme"
+}

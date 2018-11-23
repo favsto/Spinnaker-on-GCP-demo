@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Google OnBoard 2018</title>
+        <link rel="icon" type="image/png" href="https://storage.googleapis.com/public-demo-data/spinnaker/frontend/favicon.png" />
+        <style>
+            body {
+                font-size: 50px;
+                color: #666666;
+                font-family: Verdana, sans-serif;
+            }
+            .header {
+                width: 100%;
+                height: 100px;
+                display: inline-block;
+            }
+            .header img {
+                height: 50px;
+            }
+            .header .pull-right {
+                float: right;
+            }
+            .code {
+                font-family: 'Courier New', Courier, monospace;
+                border-left: 4px solid #AAAAAA;
+                font-size: 2vw;
+                margin: 0px;
+            }
+            .hashtag {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                font-size: 50px;
+                color: #999999;
+            }
+            .button-container {
+                padding-left: 50px;
+                border-left: 4px solid #AAAAAA;
+            }
+            .button {
+                font-size: 1vw;
+                font-family: 'Verdana', serif;
+                padding: 10px;
+                background-color: #008CBA;
+                color: White;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#update").click(function(){
+                    $.get("/backend", function(data, status){
+                        console.log(data);
+                        var response = JSON.parse(data);
+                        $("#backend-hostname").text(response.hostname);
+                        $("#backend-version").text(response.version);
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <img src="https://storage.googleapis.com/public-demo-data/spinnaker/frontend/gcp_logo_tailored.png">
+            <img src="https://storage.googleapis.com/public-demo-data/spinnaker/frontend/logo_injenia.png" class="pull-right">
+        </div>
+        <div class="button-container">
+            <button id="update" class="button">update from backend</button>
+        </div>
+        <pre class="code">
+  ..
+    &lt;destination&gt; <b>#DevFest18</b> &lt;/destination&gt;
+    &lt;frontend&gt;
+        &lt;hostname&gt; <b>{{frontend-hostname}}</b> &lt;/hostname&gt;
+        &lt;version&gt; <b>{{frontend-version}}</b> &lt;/version&gt;
+    &lt;/frontend&gt;
+    &lt;backend&gt;
+        &lt;hostname&gt; <b id="backend-hostname">{{backend-hostname}}</b> &lt;/hostname&gt;
+        &lt;version&gt; <b id="backend-version">{{backend-version}}</b> &lt;/version&gt;
+    &lt;/backend&gt;
+  ..
+        </pre>
+        <div class="hashtag">#injenia</div>
+    </body>
+</html>

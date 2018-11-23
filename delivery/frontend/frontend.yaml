@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: micro-frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: frontend-demo
+    spec:
+      containers:
+      - image: eu.gcr.io/fausto-lab/micro-frontend
+        name: micro-frontend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      terminationGracePeriodSeconds: 30
