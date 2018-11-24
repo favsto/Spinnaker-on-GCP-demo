@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: micro-backend-canary
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-demo
+      env: canary
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: backend-demo
+        env: canary
+    spec:
+      containers:
+      - image: eu.gcr.io/fausto-lab/micro-backend
+        name: micro-backend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      terminationGracePeriodSeconds: 30

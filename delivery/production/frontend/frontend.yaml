@@ -1,13 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: micro-backend
+  name: micro-frontend
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend-demo
+      app: frontend-demo
+      env: production
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,11 +17,12 @@ spec:
   template:
     metadata:
       labels:
-        app: backend-demo
+        app: frontend-demo
+        env: production
     spec:
       containers:
-      - image: eu.gcr.io/fausto-lab/micro-backend
-        name: micro-backend
+      - image: eu.gcr.io/fausto-lab/micro-frontend
+        name: micro-frontend
         ports:
         - containerPort: 8080
           protocol: TCP

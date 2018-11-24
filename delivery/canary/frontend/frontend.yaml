@@ -1,13 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: micro-frontend
+  name: micro-frontend-canary
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: frontend-demo
+      env: canary
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,6 +18,7 @@ spec:
     metadata:
       labels:
         app: frontend-demo
+        env: canary
     spec:
       containers:
       - image: eu.gcr.io/fausto-lab/micro-frontend

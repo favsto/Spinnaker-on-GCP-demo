@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: backend-demo
+    env: production
   name: micro-backend-service
   namespace: default
 spec:

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend-demo
+    env: canary
+  name: micro-frontend-service-canary
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: frontend-demo
+    env: canary
+  type: NodePort

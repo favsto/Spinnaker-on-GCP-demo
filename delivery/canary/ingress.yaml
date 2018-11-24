@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress-canary
+  namespace: default
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /backend/*
+        backend:
+          serviceName: micro-backend-service-canary
+          servicePort: 80
+      - path: /backend
+        backend:
+          serviceName: micro-backend-service-canary
+          servicePort: 80
+  backend:
+    serviceName: micro-frontend-service-canary
+    servicePort: 80
