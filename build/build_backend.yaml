@@ -1,0 +1,13 @@
+steps:
+
+# Build image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '--tag=eu.gcr.io/$PROJECT_ID/micro-backend:$TAG_NAME'
+  - '--file=source/backend/Dockerfile'
+  - './source/backend/'
+
+# release image
+images:
+- 'eu.gcr.io/$PROJECT_ID/micro-backend:$TAG_NAME'

@@ -16,14 +16,14 @@ fi
 
 echo -e "${COLOR_BLUE}Changing the version in the source code...${COLOR_NONE}"
 cat server_template.js | sed -e 's/CURRENT_VERSION/v'"$2"'/g' > server.js
-echo -e "${COLOR_BLUE}Done${COLOR_NONE}"
+echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 
 echo -e "${COLOR_BLUE}Baking image...${COLOR_NONE}"
 docker build -t eu.gcr.io/$1/micro-frontend:v$2 .
-echo -e "${COLOR_BLUE}Done${COLOR_NONE}"
+echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 
 echo -e "${COLOR_BLUE}Pushing image to GCR...${COLOR_NONE}"
 docker push eu.gcr.io/$1/micro-frontend:v$2
-echo -e "${COLOR_BLUE}Done${COLOR_NONE}"
+echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
