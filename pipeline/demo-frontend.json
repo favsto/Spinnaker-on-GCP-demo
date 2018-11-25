@@ -1,0 +1,229 @@
+{
+  "expectedArtifacts": [
+    {
+      "defaultArtifact": {
+        "kind": "default.docker",
+        "name": "eu.gcr.io/fausto-lab/micro-frontend",
+        "reference": "eu.gcr.io/fausto-lab/micro-frontend:v1",
+        "type": "docker/image",
+        "version": "v1"
+      },
+      "id": "4a93b977-91aa-425b-8f8e-6d6e6ae55745",
+      "matchArtifact": {
+        "kind": "docker",
+        "name": "eu.gcr.io/fausto-lab/micro-frontend",
+        "type": "docker/image"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": true,
+      "usePriorExecution": false
+    },
+    {
+      "defaultArtifact": {
+        "kind": "default.github",
+        "name": "delivery/canary/frontend/frontend.yaml",
+        "reference": "https://api.github.com/repos/favsto/Spinnaker-on-GCP-demo/contents/delivery/canary/frontend/frontend.yaml",
+        "type": "github/file",
+        "version": "master"
+      },
+      "id": "6ea89d31-196d-4f5b-b483-84dd0299e0a8",
+      "matchArtifact": {
+        "kind": "github",
+        "name": "delivery/canary/frontend/frontend.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": true,
+      "usePriorExecution": false
+    },
+    {
+      "defaultArtifact": {
+        "kind": "default.github",
+        "name": "delivery/canary/frontend/frontend-service.yaml",
+        "reference": "https://api.github.com/repos/favsto/Spinnaker-on-GCP-demo/contents/delivery/canary/frontend/frontend-service.yaml",
+        "type": "github/file",
+        "version": "master"
+      },
+      "id": "63cf8cb4-bd42-4d3f-9a5c-484e62f0b16e",
+      "matchArtifact": {
+        "kind": "github",
+        "name": "delivery/canary/frontend/frontend-service.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": true,
+      "usePriorExecution": false
+    },
+    {
+      "defaultArtifact": {
+        "kind": "default.github",
+        "name": "delivery/production/frontend/frontend.yaml",
+        "reference": "https://api.github.com/repos/favsto/Spinnaker-on-GCP-demo/contents/delivery/production/frontend/frontend.yaml",
+        "type": "github/file",
+        "version": "master"
+      },
+      "id": "b79d5091-5022-4cc6-a7a3-20ea6c63a8f2",
+      "matchArtifact": {
+        "kind": "github",
+        "name": "delivery/production/frontend/frontend.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": true,
+      "usePriorExecution": false
+    },
+    {
+      "defaultArtifact": {
+        "kind": "default.github",
+        "name": "delivery/production/frontend/frontend-service.yaml",
+        "reference": "https://api.github.com/repos/favsto/Spinnaker-on-GCP-demo/contents/delivery/production/frontend/frontend-service.yaml",
+        "type": "github/file",
+        "version": "master"
+      },
+      "id": "12626bcd-1e65-43f5-87a7-2664e7e0ac39",
+      "matchArtifact": {
+        "kind": "github",
+        "name": "delivery/production/frontend/frontend-service.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": true,
+      "usePriorExecution": false
+    }
+  ],
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "fausto.fusaro@injenia.it",
+  "limitConcurrent": true,
+  "parameterConfig": [],
+  "stages": [
+    {
+      "account": "my-k8s-v2-account",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "github-demo-artifact-account",
+      "manifestArtifactId": "6ea89d31-196d-4f5b-b483-84dd0299e0a8",
+      "moniker": {
+        "app": "micro"
+      },
+      "name": "Deploy Canary Frontend",
+      "refId": "1",
+      "relationships": {
+        "loadBalancers": [],
+        "securityGroups": []
+      },
+      "requiredArtifactIds": [
+        "4a93b977-91aa-425b-8f8e-6d6e6ae55745"
+      ],
+      "requisiteStageRefIds": [],
+      "source": "artifact",
+      "type": "deployManifest"
+    },
+    {
+      "account": "my-k8s-v2-account",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "github-demo-artifact-account",
+      "manifestArtifactId": "63cf8cb4-bd42-4d3f-9a5c-484e62f0b16e",
+      "moniker": {
+        "app": "micro"
+      },
+      "name": "Deploy Canary Frontend Service",
+      "refId": "2",
+      "relationships": {
+        "loadBalancers": [],
+        "securityGroups": []
+      },
+      "requiredArtifactIds": [],
+      "requisiteStageRefIds": [],
+      "source": "artifact",
+      "type": "deployManifest"
+    },
+    {
+      "failPipeline": true,
+      "instructions": "Hi there. Are you confident that this application can run in this way?",
+      "judgmentInputs": [],
+      "name": "Manual Judgment",
+      "notifications": [
+        {
+          "address": "fausto.fusaro@injenia.it",
+          "level": "stage",
+          "type": "email",
+          "when": [
+            "manualJudgment"
+          ]
+        }
+      ],
+      "propagateAuthenticationContext": false,
+      "refId": "3",
+      "requisiteStageRefIds": [
+        "2",
+        "1"
+      ],
+      "sendNotifications": true,
+      "type": "manualJudgment"
+    },
+    {
+      "account": "my-k8s-v2-account",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "github-demo-artifact-account",
+      "manifestArtifactId": "b79d5091-5022-4cc6-a7a3-20ea6c63a8f2",
+      "moniker": {
+        "app": "micro"
+      },
+      "name": "Deploy Production Frontend",
+      "refId": "4",
+      "relationships": {
+        "loadBalancers": [],
+        "securityGroups": []
+      },
+      "requiredArtifactIds": [
+        "4a93b977-91aa-425b-8f8e-6d6e6ae55745"
+      ],
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "source": "artifact",
+      "type": "deployManifest"
+    },
+    {
+      "account": "my-k8s-v2-account",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "github-demo-artifact-account",
+      "manifestArtifactId": "12626bcd-1e65-43f5-87a7-2664e7e0ac39",
+      "moniker": {
+        "app": "micro"
+      },
+      "name": "Deploy Production Frontend Service",
+      "refId": "5",
+      "relationships": {
+        "loadBalancers": [],
+        "securityGroups": []
+      },
+      "requiredArtifactIds": [],
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "source": "artifact",
+      "type": "deployManifest"
+    }
+  ],
+  "triggers": [
+    {
+      "account": "test-delivery-container-registry",
+      "attributeConstraints": {},
+      "enabled": true,
+      "expectedArtifactIds": [
+        "4a93b977-91aa-425b-8f8e-6d6e6ae55745"
+      ],
+      "organization": "fausto-lab",
+      "payloadConstraints": {
+        "tag": "eu.gcr.io/fausto-lab/micro-frontend:v.*"
+      },
+      "pubsubSystem": "google",
+      "registry": "eu.gcr.io",
+      "repository": "fausto-lab/micro-frontend",
+      "subscriptionName": "fausto-lab-pubsub",
+      "tag": "",
+      "type": "pubsub"
+    }
+  ],
+  "updateTs": "1543168857099"
+}

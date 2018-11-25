@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License. 
 */
 
-var VERSION = "v1";
+var VERSION = "CURRENT_VERSION";
 
 var http = require('http');
 var fs = require('fs');
