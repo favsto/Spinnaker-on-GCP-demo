@@ -1,0 +1,31 @@
+{
+    "keepWaitingPipelines": false,
+    "lastModifiedBy": "fausto.fusaro@injenia.it",
+    "limitConcurrent": true,
+    "stages": [
+      {
+        "account": "my-k8s-v2-account",
+        "cloudProvider": "kubernetes",
+        "kind": "deployment",
+        "location": "default",
+        "manifestName": "deployment micro-backend-canary",
+        "name": "Undo Rollout (Manifest)",
+        "numRevisionsBack": 1,
+        "refId": "1",
+        "requisiteStageRefIds": [],
+        "type": "undoRolloutManifest"
+      }
+    ],
+    "triggers": [
+      {
+        "application": "micro",
+        "enabled": true,
+        "pipeline": "3ae758a0-a233-4918-b6ce-e2175dfbceaf",
+        "status": [
+          "failed"
+        ],
+        "type": "pipeline"
+      }
+    ],
+    "updateTs": "1543224954146"
+  }

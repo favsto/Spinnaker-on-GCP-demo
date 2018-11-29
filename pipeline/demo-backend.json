@@ -181,6 +181,10 @@
         "3"
       ],
       "source": "artifact",
+      "stageEnabled": {
+        "expression": "${ #judgment(\"Manual Judgment\").equals(\"continue\")}",
+        "type": "expression"
+      },
       "type": "deployManifest"
     },
     {
@@ -202,6 +206,10 @@
         "3"
       ],
       "source": "artifact",
+      "stageEnabled": {
+        "expression": "${ #judgment(\"Manual Judgment\").equals(\"continue\")}",
+        "type": "expression"
+      },
       "type": "deployManifest"
     }
   ],
@@ -225,5 +233,5 @@
       "type": "pubsub"
     }
   ],
-  "updateTs": "1543168846660"
+  "updateTs": "1543225008409"
 }

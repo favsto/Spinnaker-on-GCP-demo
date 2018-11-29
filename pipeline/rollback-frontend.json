@@ -1,0 +1,47 @@
+{
+    "keepWaitingPipelines": false,
+    "lastModifiedBy": "fausto.fusaro@injenia.it",
+    "limitConcurrent": true,
+    "stages": [
+      {
+        "account": "my-k8s-v2-account",
+        "cloudProvider": "kubernetes",
+        "kind": "deployment",
+        "location": "default",
+        "manifestName": "deployment micro-frontend-canary",
+        "name": "Undo Rollout (Manifest)",
+        "notifications": [
+          {
+            "address": "fausto.fusaro@injenia.it",
+            "level": "stage",
+            "message": {
+              "stage.complete": {
+                "text": "Your Frontend Canary has been rolled back!"
+              }
+            },
+            "type": "email",
+            "when": [
+              "stage.complete"
+            ]
+          }
+        ],
+        "numRevisionsBack": 1,
+        "refId": "1",
+        "requisiteStageRefIds": [],
+        "sendNotifications": true,
+        "type": "undoRolloutManifest"
+      }
+    ],
+    "triggers": [
+      {
+        "application": "micro",
+        "enabled": true,
+        "pipeline": "e6f05d7b-0ba9-47de-841f-b69ae36d3158",
+        "status": [
+          "failed"
+        ],
+        "type": "pipeline"
+      }
+    ],
+    "updateTs": "1543230798310"
+  }
