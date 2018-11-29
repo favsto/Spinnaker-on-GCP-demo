@@ -18,13 +18,13 @@ var VERSION = "CURRENT_VERSION";
 
 var http = require('http');
 var fs = require('fs');
-var os = require('os');
+const details = require('./host-details');
 
 /**
  * Request handler: it responds with a page 
  */
 var handleRequest = function(request, response) {
-    var hostname = os.hostname();
+    var hostname = details().hostname;
     console.log(new Date() + " - " + hostname + ": " + request.url);
 
     substitutionMap = {

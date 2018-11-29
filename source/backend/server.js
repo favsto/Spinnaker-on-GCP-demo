@@ -17,8 +17,8 @@ limitations under the License.
 var VERSION = "v1";
 
 var http = require('http');
-var fs = require('fs');
 var os = require('os');
+const details = require('./host-details');
 
 /**
  * Request handler: it responds with a JSON if you ask for /backend, with a phrase otherwise
@@ -29,11 +29,9 @@ var handleRequest = function(request, response) {
 
     switch (request.url) {
         case "/backend":
-            var reply = {
-                status: "ok",
-                hostname: hostname,
-                version: VERSION
-            };
+            var reply = details();
+            reply.version = VERSION;
+
             response.writeHead(200);
             response.end(JSON.stringify(reply));
             break;
