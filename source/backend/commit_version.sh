@@ -22,7 +22,7 @@ echo
 
 echo -e "${COLOR_BLUE}Push code version $VERSION...${COLOR_NONE}"
 git add . 
-git commit -m "push of veresion $1"
+git commit -m "push of version $1"
 git push
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo

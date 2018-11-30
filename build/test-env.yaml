@@ -2,13 +2,24 @@ steps:
 
 # Compile
 - name: 'gcr.io/cloud-builders/npm'
-  args:
-  - 'install'
+  entrypoint: 'sh'
+  args:args:
+  - '-c'
+  - |
+    pwd
+    ls -la
+    cd source/backend
+    pwd
+    npm install
 
 # Test code
 - name: 'gcr.io/cloud-builders/npm'
-  args:
-  - 'test'
+  entrypoint: 'sh'
+  args:args:
+  - '-c'
+  - |
+    cd source/backend
+    npm test
 
 # Build image
 - name: 'gcr.io/cloud-builders/docker'
