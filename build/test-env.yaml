@@ -3,7 +3,7 @@ steps:
 # Compile
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'sh'
-  args:args:
+  args:
   - '-c'
   - |
     pwd
@@ -15,7 +15,7 @@ steps:
 # Test code
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'sh'
-  args:args:
+  args:
   - '-c'
   - |
     cd source/backend
