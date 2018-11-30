@@ -1,13 +1,36 @@
 steps:
 
+# Compile
+- name: 'gcr.io/cloud-builders/npm'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+    cd source/frontend
+    npm install
+
+# Test code
+- name: 'gcr.io/cloud-builders/npm'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+    cd source/frontend
+    npm test
+
 # Build image
 - name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
   args:
-  - 'build'
-  - '--tag=eu.gcr.io/$PROJECT_ID/micro-frontend:$TAG_NAME'
-  - '--file=source/frontend/Dockerfile'
-  - './source/frontend/'
+  - '-c'
+  - 'docker build --tag=eu.gcr.io/$PROJECT_ID/micro-frontend:$(cat source/frontend/version) --file=source/frontend/Dockerfile ./source/frontend/'
 
 # release image
-images:
-- 'eu.gcr.io/$PROJECT_ID/micro-frontend:$TAG_NAME'
+# Push the image
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - 'docker push eu.gcr.io/$PROJECT_ID/micro-frontend:$(cat source/frontend/version)'
+
+tags: ['frontend']

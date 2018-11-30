@@ -17,7 +17,6 @@ fi
 echo -e "${COLOR_BLUE}Changing the version in the source code...${COLOR_NONE}"
 VERSION="v$2"
 echo $VERSION > version
-cat server_template.js | sed -e 's/CURRENT_VERSION/'"$VERSION"'/g' > server.js
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 

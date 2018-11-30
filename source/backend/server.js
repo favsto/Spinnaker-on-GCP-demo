@@ -14,10 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License. 
 */
 
-var VERSION = "v1";
-
 var http = require('http');
 var os = require('os');
+var fs = require('fs');
+
+var VERSION = fs.readFileSync("version");
+
 const details = require('./host-details');
 
 /**
