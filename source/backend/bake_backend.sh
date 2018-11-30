@@ -15,15 +15,17 @@ if [ $# -ne 2 ]
 fi
 
 echo -e "${COLOR_BLUE}Changing the version in the source code...${COLOR_NONE}"
-cat server_template.js | sed -e 's/CURRENT_VERSION/v'"$2"'/g' > server.js
+VERSION="v$2"
+echo $VERSION > version
+cat server_template.js | sed -e 's/CURRENT_VERSION/'"$VERSION"'/g' > server.js
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 
 echo -e "${COLOR_BLUE}Baking image...${COLOR_NONE}"
-docker build -t eu.gcr.io/$1/micro-backend:v$2 .
+docker build -t eu.gcr.io/$1/micro-backend:$VERSION .
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 
 echo -e "${COLOR_BLUE}Pushing image to GCR...${COLOR_NONE}"
-docker push eu.gcr.io/$1/micro-backend:v$2
+docker push eu.gcr.io/$1/micro-backend:$VERSION
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
