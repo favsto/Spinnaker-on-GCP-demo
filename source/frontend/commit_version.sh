@@ -16,7 +16,7 @@ fi
 
 echo -e "${COLOR_BLUE}Changing the version in the source code...${COLOR_NONE}"
 VERSION="v$1"
-echo $VERSION > version
+echo -n $VERSION > version
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 
