@@ -32,7 +32,7 @@ var handleRequest = function(request, response) {
     switch (request.url) {
         case "/backend":
             var reply = details();
-            reply.version = VERSION;
+            reply.version = "" + VERSION;
 
             response.writeHead(200);
             response.end(JSON.stringify(reply));
