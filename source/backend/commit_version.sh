@@ -15,11 +15,12 @@ if [ $# -ne 1 ]
 fi
 
 echo -e "${COLOR_BLUE}Changing the version in the source code...${COLOR_NONE}"
-echo "v$1" > version
+VERSION="v$1"
+echo $VERSION > version
 echo -e "${COLOR_YELLOW}Done${COLOR_NONE}"
 echo
 
-echo -e "${COLOR_BLUE}Push code...${COLOR_NONE}"
+echo -e "${COLOR_BLUE}Push code version $VERSION...${COLOR_NONE}"
 git add . 
 git commit -m "push of veresion $1"
 git push
