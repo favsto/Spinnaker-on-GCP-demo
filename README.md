@@ -61,7 +61,7 @@ cd ../frontend
 
 ## Author
 Fausto Fusaro [fausto.fusaro@injenia.it](mailto:fausto.fusaro@injenia.it)  
-Google Cloud Solution Arhitect
+Google Cloud Architect @ Injenia Srl
 
 ## Contributors
 Any contributor is my friend... feel free to contribute! :)
